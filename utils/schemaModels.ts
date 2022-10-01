@@ -1,8 +1,9 @@
 import mongoose from "mongoose"
+import { ItemDataType, UserDataType } from "./types"
 
 const Schema = mongoose.Schema
 
-const ItemSchema = new Schema({
+const ItemSchema = new Schema<ItemDataType>({
   title: String,
   image: String,
   price: String,
@@ -10,7 +11,7 @@ const ItemSchema = new Schema({
   email: String,
 })
 
-const UserSchema = new Schema({
+const UserSchema = new Schema<UserDataType>({
   name: {
     type: String,
     required: true
@@ -26,6 +27,6 @@ const UserSchema = new Schema({
   },
 })
 
-export const ItemModel = mongoose.models.Item || mongoose.model("Item", ItemSchema)
-export const UserModel = mongoose.models.User || mongoose.model("User", UserSchema)
+export const ItemModel = mongoose.models.Item || mongoose.model<ItemDataType>("Item", ItemSchema)
+export const UserModel = mongoose.models.User || mongoose.model<UserDataType>("User", UserSchema)
 
