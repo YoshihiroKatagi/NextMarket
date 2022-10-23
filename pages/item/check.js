@@ -8,28 +8,28 @@ const CreateItem = () => {
   const [description, setDescription] = useState("")
 
   const handleSubmit = async(e) => {
-    e.preventDefault()
-    try{
-      const response = await fetch("http://localhost:3000/api/item/create", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "authorization": `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({
-          title: title,
-          price: price,
-          image: image,
-          description: description
-        })
-      })
-      const jsonData = await response.json()
-      alert(jsonData.message)
-    }catch(err){
-      alert("アイテム作成失敗")
-    }
-  }
+      e.preventDefault()
+      try{
+          const response = await fetch("https://localhost:3000/api/item/create", {
+              method: "POST",
+              headers: { 
+                  "Accept": "application/json", 
+                  "Content-Type": "application/json",
+                  "authorization": `Bearer ${localStorage.getItem("token")}`
+              },
+              body: JSON.stringify({
+                  title: title,
+                  price: price,
+                  image: image,
+                  description: description
+              })
+          })
+          const jsonData = await response.json() 
+          alert(jsonData.message)  
+      }catch(err){
+          alert("アイテム作成失敗")
+      }
+  } 
 
   return (
     <div>
